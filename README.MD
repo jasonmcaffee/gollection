@@ -4,7 +4,7 @@ gollection provides commonly needed high order functions for iterating, filterin
 ## Gollection Usage
 The gollection object provides a fluent interface for chaining multiple functions together.
 
-```
+```go
 type Person struct { Name string }
 personNames := []string{"jason", "sarah", "john"}
 var persons []Person
@@ -38,7 +38,7 @@ g.New(personNames).
 ```
 ### Reduce
 The reduce function allows us to combine values from a given slice into a single value
-```
+```go
 peopleAges := []int{20, 30, 40}
 totalAge := g.New(peopleAges).Reduce(func(aggregator int, age int) int{
 	return aggregator + age
@@ -53,7 +53,7 @@ Converts a slice of type X to slice of type Y.
 
 Since Gollection Collect can only return a []interface{}, rather than the concrete type, we need to provide a mechanism for easy conversion
 
-```
+```go
 var result []string
 g.New([]interface{}{"a", "b"}).
 	CollectAs(func(strings []string){ result = strings })
@@ -68,7 +68,7 @@ Converts a slice of type X to slice of type Y.
 
 Since Gollection Collect can only return a []interface{}, rather than the concrete type, we need to provide a mechanism for easy conversion
 
-```
+```go
 input := []interface{}{"a", "b"}
 var output []string
 g.CollectAs(input, func(strings []string){output = strings})
