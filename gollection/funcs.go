@@ -34,6 +34,23 @@ func mapp(slice []interface{}, eachFuncParam interface{}) []interface{} {
 	return each(slice, eachFuncParam)
 }
 
+func collectAs(slice []interface{}, collectFuncParam interface{}){
+	funcValue := reflect.ValueOf(collectFuncParam)
+	funcType := funcValue.Type()
+	//get the type of first param
+	param0SliceType := funcType.In(0)
+	//create a new slice of the type the func is expecting
+	convertedSlice := reflect.MakeSlice(param0SliceType, 0, len(slice))
+	//iterate over each value and at it to the convertedSlice
+	for i:=0; i < len(slice); i++{
+		iValue := reflect.ValueOf(slice[i])
+		convertedSlice = reflect.Append(convertedSlice, iValue)
+	}
+	//execute the collectFunc and pass it the slice of type it was expecting.
+	funcValue.Call([]reflect.Value{convertedSlice})
+	return
+}
+
 func reduce(slice []interface{}, reduceIterationFuncParam interface{}, aggregatorParam interface{}) interface{} {
 	reduceIterationFunc := reflect.ValueOf(reduceIterationFuncParam)
 	aggregator := aggregatorParam

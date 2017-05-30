@@ -25,3 +25,9 @@ func Reduce(sliceParam interface{}, reduceIterationFuncParam interface{}, aggreg
 	slice := convertSliceToSliceOfInterfaces(sliceParam)
 	return reduce(slice, reduceIterationFuncParam, aggregatorParam)
 }
+
+func CollectAs(sliceParam interface{}, collectAsFunc interface{}){
+	slice := convertSliceToSliceOfInterfaces(sliceParam)
+	collectAs(slice, collectAsFunc)
+	return
+}
