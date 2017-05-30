@@ -14,7 +14,6 @@ func filter(slice []interface{}, whereFuncParam interface{}) []interface{} {
 			results = append(results, itemObj)
 		}
 	}
-
 	return results
 }
 

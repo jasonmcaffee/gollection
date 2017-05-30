@@ -17,6 +17,11 @@ func (g *Gollection) Each(eachFunc interface{}) *Gollection{
 	return g
 }
 
+func (g *Gollection) Map(mapFunc interface{}) *Gollection{
+	g.slice = mapp(g.slice, mapFunc)
+	return g
+}
+
 //Collect returns the underlying slice, which has likely been modified by Filter, Reduce, etc
 func (g *Gollection) Collect() []interface{}{
 	return g.slice
